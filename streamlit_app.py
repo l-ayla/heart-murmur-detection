@@ -79,4 +79,4 @@ if uploaded_files:
         st.subheader("🩺 Combined Patient Analysis")
         st.write(f"**Prediction:** {CLASS_LABELS[predicted_class]}")
         st.write(f"**Confidence:** {confidence:.2f}%")
-        st.warning("⚠️ This tool is for educational and research purposes only. It does **not** provide medical advice or diagnosis. If you have concerns about your heart health, please consult a qualified medical professional.")
+        st.warning("⚠️ WARNING: This tool is for educational and research purposes only. It does **not** provide medical advice or diagnosis. If you have concerns about your heart health, please consult a qualified medical professional.")
