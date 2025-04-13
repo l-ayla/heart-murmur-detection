@@ -21,9 +21,10 @@ The ```pcg.h5``` classifies the file as one of three classes
 - Murmur Absent
 - Unknown 
 
-###### Any recording with less than 50% confidence is re-classified as unknown automatically 
+###### (Any recording with less than 50% confidence is re-classified as unknown automatically)
 
 ### CNN Model 
+
 
 - model size 
 - epochs 
