@@ -1,3 +1,7 @@
 streamlit
 librosa
-numpy 
+matplotlib
+numpy
+scipy
+tensorflow
+Pillow

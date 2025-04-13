@@ -11,8 +11,6 @@ from io import BytesIO
 from scipy import signal
 from PIL import Image
 
-# @st.cache_resource
-# model = load_model(pcg.keras)
 
 # ==== contsants ======
 TARGET_SR = 2000
@@ -37,6 +35,12 @@ CLASS_LABELS = ["Murmur Detected", "Murmur Absent", "Unknown"]
 # ==== GUI ======
 st.set_page_config(page_title="Heart Sound Classifier", layout="centered")
 st.title("🫀 Heart Murmur Detection")
+
+@st.cache_resource
+def load_cnn_model():
+    return load_model('pcg_whar.h5') # i dont know why i have to declare this as a seperate function but it just works
+
+model = load_cnn_model()
 
 uploaded_file = st.file_uploader("Upload a heart sound `.wav` file (minimum 9 seconds)", type=["wav"], accept_multiple_files = False)
 col1, col2 = st.columns(2)
