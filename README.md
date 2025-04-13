@@ -1,19 +1,28 @@
-# 🎈 Blank app template
+# 🫀 Heart Murmur Detection with Deep Learning
 
-A simple Streamlit app template for you to modify!
+This app is a simple front end to my dissertation project which explored deep learning optimisation for heart murmur detection, it is based on the PhysioNet 2022 George B. Moody Challenge, for which the database on which it is trained can be installed 
+```
+wget -r -N -c -np https://physionet.org/files/circor-heart-sound/1.0.0/
+```
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://blank-app-template.streamlit.app/)
 
-### How to run it on your own machine
 
-1. Install the requirements
+### How it works 
+1. #### Upload File
+Upload a ```.wav``` file of a heart recording (minimum 9 seconds for baseline accuracy)
 
-   ```
-   $ pip install -r requirements.txt
-   ```
+1. ```View Segment ```
+The uploaded file is then preprocessed and converted into a 128-Mel-Feature Spectrogram to be optionally viewed
+   
 
-2. Run the app
+2. ```Analyse```
+The ```pcg.h5``` classifies the file as one of three classes 
+- Murmur Present
+- Murmur Absent
+- Unknown 
+Any recording with less than 50% confidence is re-classified as unknown automatically 
 
-   ```
-   $ streamlit run streamlit_app.py
-   ```
+### CNN Model 
+
+
+  
