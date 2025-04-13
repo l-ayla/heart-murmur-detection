@@ -3,5 +3,5 @@ librosa==0.11.0
 matplotlib
 numpy==2.0.2
 scipy==1.14.1
-tensorflow
+tensorflow==2.18.0
 Pillow
