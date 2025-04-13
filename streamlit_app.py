@@ -42,7 +42,7 @@ def load_cnn_model():
 
 model = load_cnn_model()
 
-uploaded_file = st.file_uploader("Upload a heart sound `.wav` file (minimum 9 seconds)", type=["wav"], accept_multiple_files = False)
+uploaded_file = st.file_uploader("Upload one or more heart sound recordings in `.wav` format from the same patient (minimum 9 seconds)", type=["wav"], accept_multiple_files = True)
 col1, col2 = st.columns(2)
 view_clicked = col1.button("View as Spectrogram", key="view_button")
 analyse_clicked = col2.button("Analyse", key="analyse_button")
@@ -77,20 +77,33 @@ if view_clicked:
 
 # ==== Analyse ==========
 if analyse_clicked:
-    if uploaded_file:
-        # Prepare input: [num_segments, height, width, 1]
-        input_data = np.stack(mel_specs).astype(np.float32)
-        input_data = input_data[..., np.newaxis]  # add channel dimension
-        print(f"Input mean: {input_data.mean():.4f}, std: {input_data.std():.4f}")
+    if uploaded_files:
+        all_predictions = []
 
-        predictions = model.predict(input_data)
-        avg_probs = np.mean(predictions, axis=0)
+        for uploaded_file in uploaded_files:
+            wav_bytes = uploaded_file.read()
+            wav_buffer = BytesIO(wav_bytes)
+            wav_buffer.seek(0)
+
+            input_data = np.stack(mel_specs).astype(np.float32)
+            input_data = input_data[..., np.newaxis]  # [segments, height, width, 1]
+
+            predictions = model.predict(input_data)  # shape: [num_segments, 3]
+            all_predictions.append(np.mean(predictions, axis=0))  # average for this file
+
+        # Now average across all uploaded files
+        avg_probs = np.mean(all_predictions, axis=0)
         predicted_class = np.argmax(avg_probs)
+
         class_labels = ["Murmur Absent", "Murmur Detected", "Unknown"]
         if avg_probs[predicted_class] < 0.5 and predicted_class in [0, 1]:
             predicted_class = 2
+
         confidence = avg_probs[predicted_class] * 100
+
         st.subheader("🩺 Analysis Result")
-        st.write(f"**Prediction:** {avg_probs}")
+        st.write(f"**Prediction:** {class_labels[predicted_class]}")
         st.write(f"**Confidence:** {confidence:.2f}%")
-    else: st.warning("Please upload a file first")
+        st.warning("⚠️ This tool is for educational and research purposes only. It does **not** provide medical advice or diagnosis. If you have concerns about your heart health, please consult a qualified medical professional.")
+    else:
+        st.warning("Please upload one or more files.")
