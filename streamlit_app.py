@@ -42,7 +42,7 @@ def load_cnn_model():
 
 model = load_cnn_model()
 
-uploaded_file = st.file_uploader("Upload a heart sound `.wav` file (minimum 9 seconds)", type=["wav"], accept_multiple_files = False)
+uploaded_file = st.file_uploader("Upload a heart sound `.wav` file (minimum 9 seconds)", type=["wav"], accept_multiple_files = True)
 col1, col2 = st.columns(2)
 view_clicked = col1.button("View as Spectrogram", key="view_button")
 analyse_clicked = col2.button("Analyse", key="analyse_button")
