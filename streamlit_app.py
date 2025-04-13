@@ -79,7 +79,7 @@ if view_clicked:
 if analyse_clicked:
     if uploaded_file:
         # Prepare input: [num_segments, height, width, 1]
-        input_data = np.stack(mel_specs).astype(np.float32)pip
+        input_data = np.stack(mel_specs).astype(np.float32)
         input_data = input_data[..., np.newaxis]  # add channel dimension
         print(f"Input mean: {input_data.mean():.4f}, std: {input_data.std():.4f}")
 
