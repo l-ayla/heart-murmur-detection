@@ -39,7 +39,6 @@ all_predictions = []
 
 if uploaded_files:
     for file_index, file in enumerate(uploaded_files):
-        st.markdown(f"### 🔊 File {file_index + 1}: `{file.name}`")
         wav_bytes = file.read()
         wav_buffer = BytesIO(wav_bytes)
         wav_buffer.seek(0)
@@ -80,3 +79,4 @@ if uploaded_files:
         st.subheader("🩺 Combined Patient Analysis")
         st.write(f"**Prediction:** {CLASS_LABELS[predicted_class]}")
         st.write(f"**Confidence:** {confidence:.2f}%")
+        st.warning("⚠️ This tool is for educational and research purposes only. It does **not** provide medical advice or diagnosis. If you have concerns about your heart health, please consult a qualified medical professional.")
