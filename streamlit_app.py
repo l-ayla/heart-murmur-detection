@@ -85,8 +85,9 @@ if analyse_clicked:
         avg_probs = np.mean(predictions, axis=0)
         predicted_class = np.argmax(avg_probs)
         class_labels = ["Murmur Detected", "Murmur Absent", "Unknown"]
+        if avg_probs[predicted_class] < 0.5:
+            predicted_class = 2
         confidence = avg_probs[predicted_class] * 100
-
         st.subheader("🩺 Analysis Result")
         st.write(f"**Prediction:** {class_labels[predicted_class]}")
         st.write(f"**Confidence:** {confidence:.2f}%")
