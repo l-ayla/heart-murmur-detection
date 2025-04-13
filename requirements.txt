@@ -1,7 +1,7 @@
 streamlit
-librosa
+librosa==0.11.0
 matplotlib
-numpy
-scipy
+numpy==2.0.2
+scipy==1.14.1
 tensorflow
 Pillow

@@ -23,8 +23,8 @@ WIN_LENGTH = 256
 HOP_LENGTH = 47
 
 LABEL_MAP = {
-    "Present": "Murmur Detected",
     "Absent": "Murmur Absent",
+    "Present": "Murmur Detected",
     "Unknown": "Unknown"
 }
 
@@ -58,6 +58,7 @@ if uploaded_file:
     [segments, mel_specs] = preprocess_and_segment(wav_buffer)
 
 
+
 # ==== View Spectrograms ====
 if view_clicked:
     if uploaded_file:
@@ -78,17 +79,18 @@ if view_clicked:
 if analyse_clicked:
     if uploaded_file:
         # Prepare input: [num_segments, height, width, 1]
-        input_data = np.stack(mel_specs)
+        input_data = np.stack(mel_specs).astype(np.float32)pip
         input_data = input_data[..., np.newaxis]  # add channel dimension
+        print(f"Input mean: {input_data.mean():.4f}, std: {input_data.std():.4f}")
 
         predictions = model.predict(input_data)
         avg_probs = np.mean(predictions, axis=0)
         predicted_class = np.argmax(avg_probs)
-        class_labels = ["Murmur Detected", "Murmur Absent", "Unknown"]
-        if avg_probs[predicted_class] < 0.5:
+        class_labels = ["Murmur Absent", "Murmur Detected", "Unknown"]
+        if avg_probs[predicted_class] < 0.5 and predicted_class in [0, 1]:
             predicted_class = 2
         confidence = avg_probs[predicted_class] * 100
         st.subheader("🩺 Analysis Result")
-        st.write(f"**Prediction:** {class_labels[predicted_class]}")
+        st.write(f"**Prediction:** {avg_probs}")
         st.write(f"**Confidence:** {confidence:.2f}%")
     else: st.warning("Please upload a file first")

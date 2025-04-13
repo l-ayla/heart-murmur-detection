@@ -13,7 +13,6 @@ from PIL import Image
 
 # ==== contsants ======
 TARGET_SR = 2000
-TARGET_SR = 2000
 BANDPASS_LOW = 20
 BANDPASS_HIGH = 900
 N_MELS = 128
@@ -23,8 +22,8 @@ WIN_LENGTH = 256
 HOP_LENGTH = 47
 
 LABEL_MAP = {
-    "Present": "Murmur Detected",
     "Absent": "Murmur Absent",
+    "Present": "Murmur Detected",
     "Unknown": "Unknown"
 }
 
