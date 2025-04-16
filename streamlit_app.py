@@ -20,11 +20,11 @@ THRESHOLD = 0.5
 # ==== Streamlit GUI Setup =====
 st.set_page_config(page_title="Heart Sound Classifier", layout="centered")
 st.title("🫀 Heart Murmur Detection")
-st.markdown("<small><i>This app is not intended to provide medical advice. Please consult a doctor if you are concerned about your heart health.</i></small>", unsafe_allow_html=True)
+st.markdown("<small><i>Note: This app is not intended to provide medical advice. Please consult a doctor if you are concerned about your heart health.</i></small>", unsafe_allow_html=True)
 
 @st.cache_resource
 def load_cnn_model():
-    return load_model('pcg_whar.h5')
+    return load_model('pcg_final.h5')
 
 model = load_cnn_model()
 
@@ -79,4 +79,8 @@ if uploaded_files:
         st.subheader("🩺 Combined Patient Analysis")
         st.write(f"**Prediction:** {CLASS_LABELS[predicted_class]}")
         st.write(f"**Confidence:** {confidence:.2f}%")
+        if predicted_class = 2:
+            st.write("Please refer to a clinician for further advice")
+
+
         st.warning("⚠️ WARNING: This tool is for educational and research purposes only. It does **not** provide medical advice or diagnosis. If you have concerns about your heart health, please consult a qualified medical professional.")
