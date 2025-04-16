@@ -8,6 +8,8 @@ This applet is available to use [here](murmur-detection.streamlit.app)
 
 
 ### How it works 
+![app_diagram](https://github.com/user-attachments/assets/da481b1c-5549-4c86-92a1-0c87a63dc268)
+
 1. #### Upload File
 Upload a ```.wav``` file of a heart recording (minimum 9 seconds for baseline accuracy)
 
@@ -22,6 +24,8 @@ The ```pcg.h5``` classifies the file as one of three classes
 - Unknown 
 
 ###### (Any recording with less than 50% confidence is re-classified as unknown automatically)
+
+
 
 ### CNN Model 
 ![final](https://github.com/user-attachments/assets/45bfb427-d9b1-4405-8dae-5192fa5dd962)
