@@ -79,7 +79,7 @@ if uploaded_files:
         st.subheader("🩺 Combined Patient Analysis")
         st.write(f"**Prediction:** {CLASS_LABELS[predicted_class]}")
         st.write(f"**Confidence:** {confidence:.2f}%")
-        if predicted_class = 2:
+        if predicted_class == 2:
             st.write("Please refer to a clinician for further advice")
 
 
