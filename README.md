@@ -24,13 +24,9 @@ The ```pcg.h5``` classifies the file as one of three classes
 ###### (Any recording with less than 50% confidence is re-classified as unknown automatically)
 
 ### CNN Model 
+![final](https://github.com/user-attachments/assets/45bfb427-d9b1-4405-8dae-5192fa5dd962)
 
-
-- model size 
-- epochs 
-- learning rate 
-- diagram 
-- architecture 
+Trained with AdamW over 100 epochs, with an initial learning rate of 1e-3, which halved in the 50th epoch to 5e-4 and decreased five fold in the 80th epoch to 1e-4. Trained using 80/20 patient-wise stratified split.
 
 
 
